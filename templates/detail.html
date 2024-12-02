@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>about Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/static/css/output.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body class="bg-gray-200">
+    <header class="text-gray-600 body-font my-5 mx-5"> 
+        <button class="btn btn-dark -mt-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h1 class=" inline-block ml-3 text-gray-700">Admin List</h1>
+        
+        <div class="offcanvas offcanvas-start bg-dark" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+          <div class="offcanvas-header mt-5 ml-5 ">
+            <a class="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
+            href="#" id="dropdownMenuButton2" role="button" data-te-dropdown-toggle-ref aria-expanded="false">
+            <!-- User avatar -->
+            <img src="/static/src/Logo.png" class="h-28 w-30" alt="" loading="lazy" />
+            <!-- </a> -->
+          </a>
+            <button type="button" class="btn-close bg-white border-white border-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="container  flex p-5  flex-col md:flex-col">
+              <a href="dashboard" class="hover:text-gray-500 text-2xl no-underline  text-slate-100 py-3"><i class="fa-solid fa-house mr-5"></i>DashBoard</a>
+              <a class="text-2xl no-underline hover:text-gray-500  text-slate-100 py-3" href="anime1"><i class="fa-solid fa-screwdriver-wrench mr-5"></i>Application</a>
+              <a  class="text-2xl no-underline hover:text-gray-500 text-slate-100 py-3" href="detail"><i class="fa-solid fa-lock mr-5"></i>Admin List</a>
+              <a class="text-2xl no-underline hover:text-gray-500 text-slate-100 py-3" href="/"><i class="fa-solid fa-right-to-bracket mr-5"></i>Sing Out</a>
+            </div>
+          </div>
+        </div> 
+  </header>
+
+
+  <section class="mx-20">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-info">
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+  <table class="table table-hover ">
+    <thead>
+      <tr>
+        <th scope="col" >ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in users %}
+      <tr>
+        <td>{{row.0}}</td>
+        <td>{{row.1}}</td>
+        <td>{{row.2}}</td>
+        <td>{{row.3}}</td>
+        <td>{{row.4}}</td>
+        <td>
+          <a href="/delete2/{{ row.0 }}" class="btn btn-danger btn-xs mr-8"
+          onclick="return confirm('Are You Sure For Delete?')">Delete</a>
+        </td>
+      </tr>
+      {%endfor%}
+    </tbody>
+
+  </table>
+</section>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+  crossorigin="anonymous"></script>
+</body>
+  </html>

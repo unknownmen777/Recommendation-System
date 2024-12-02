@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/output.css">
+    <title>Collection Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body class="bg-slate-900">
+    <div>
+      <header class=" body-font  fixed w-full top-0">
+        <div class="bg-black  h-[9.5rem]">
+        <div class=" container mx-auto flex -mt-12 flex-wrap p-5  flex-col md:flex-row items-center ">
+          <a class="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none "
+            href="" id="dropdownMenuButton2" role="button" data-te-dropdown-toggle-ref aria-expanded="false">
+            <!-- User avatar -->
+            <img src="/static/src/Logo.png" class="h-[6.5rem] w-30 " alt="" loading="lazy" />
+           </a>
+          <nav class="md:ml-auto font-sans flex flex-wrap items-center text-lg justify-end gap-3">
+            <a
+              class="mr-8   hover:text-gray-500 cursor-pointer no-underline text-slate-100 capitalize " href="/">home</a>
+            <a href="/recommendation"
+              class="mr-8   hover:text-gray-500 cursor-pointer no-underline text-slate-100 capitalize">recommendation</a>
+            <a href="/Anime"
+              class="mr-8   hover:text-gray-500 cursor-pointer no-underline text-slate-100 capitalize">Anime</a>
+            <a href="/about" class="mr-8   hover:text-gray-500 cursor-pointer no-underline text-slate-100 capitalize">about
+              us</a>
+          </nav>
+        </div>
+        </div>
+      </header>
+    </div>
+
+      <div class="container px-5 py-24 mx-auto mt-12">
+      <h1 class="lg:w-1/2 leading-relaxed  pb-2 text-slate-100">Anime Collections</h1>
+      <div class="flex flex-wrap -m-2">
+      {% for i in dataset %}
+
+      <div class="xl:w-1/5 md:w-1/2 ">
+        <div class="bg-slate-900 text-slate-100 p-4 rounded-lg h-[28rem]">
+          <img class="h-[15rem] rounded w-full object-cover object-center mb-6" src="{{i.3}}" alt="content">
+          <h3 class="tracking-widest text-xs font-medium title-font"><span class="text-indigo-500">Original</span> : {{i.2}}</h3>
+          <h3 class="tracking-widest text-xs font-medium title-font"><span class="text-indigo-500">English</span> : {{i.1}}</h3>
+          <h3 class="tracking-widest text-xs font-medium title-font"><span class="text-indigo-500">Genres</span> : {{i.4}}</h3>
+          <h3 class="tracking-widest text-xs font-medium title-font"><span class="text-indigo-500">Studios</span> : {{i.6}}</h3>
+          <h3 class="tracking-widest text-xs font-medium title-font"><span class="text-indigo-500">Type</span> : {{i.7}}</h3>
+         
+        </div>
+      </div>
+      {%endfor%}
+      </div>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/output.css">
+  <title>Collection Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body class="bg-gray-200">
+  <header class="text-gray-700 body-font my-5 mx-5"> 
+        <button class="btn btn-dark -mt-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h1 class=" inline-block ml-3 text-gray-700">Application</h1>
+        <div class="grid place-items-end">
+        <button type="button" class="btn btn-success  p-3  font-bold uppercase mr-28 -mt-12" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        Insert Anime
+      </button>
+    </div>
+        
+        <div class="offcanvas offcanvas-start bg-dark" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+          <div class="offcanvas-header mt-5 ml-5 ">
+            <a class="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
+            href="#" id="dropdownMenuButton2" role="button" data-te-dropdown-toggle-ref aria-expanded="false">
+            <!-- User avatar -->
+            <img src="/static/src/Logo.png" class="h-28 w-30" alt="" loading="lazy" />
+            <!-- </a> -->
+          </a>
+            <button type="button" class="btn-close bg-white border-white border-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="container  flex p-5  flex-col md:flex-col">
+              <a href="dashboard" class="hover:text-gray-500 text-2xl no-underline  text-slate-100 py-3"><i class="fa-solid fa-house mr-5"></i>DashBoard</a>
+              <a class="text-2xl no-underline hover:text-gray-500 text-slate-100 py-3" href="anime1"><i class="fa-solid fa-screwdriver-wrench mr-5"></i>Application</a>
+              <a class="text-2xl no-underline hover:text-gray-500 text-slate-100 py-3" href="detail"><i class="fa-solid fa-lock mr-5"></i>Admin List</a>
+              <a class="text-2xl no-underline hover:text-gray-500 text-slate-100 py-3" href="/"><i class="fa-solid fa-right-to-bracket mr-5"></i>Sign Out</a>
+            </div>
+          </div>
+        </div>
+         
+  </header>
+ 
+  <div class="container px-5 mx-auto">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-info">
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <!-- <h1 class="lg:w-1/2 leading-relaxed pl-12 pb-3 text-gray-700">Anime</h1> -->
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary ml-12 p-4 font-bold uppercase" data-toggle="modal" data-bs-target="#exampleModal">Insert Anime</button> -->
+
+    <!-- Modal -->
+    <!-- <button type="button" class="btn btn-success ml-5 p-3 mb-3 font-bold uppercase" data-bs-toggle="modal"
+      data-bs-target="#exampleModal">
+      Insert Anime
+    </button> -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Insert</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form class="row g-3" action="/insert" method='POST' enctype="multipart/form-data">
+              <div class="col-md-6">
+                <label for="Name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="Name" name="Name">
+              </div>
+              <div class="col-md-6">
+                <label for="Original_Name" class="form-label">Original name</label>
+                <input type="text" class="form-control" id="Original_Name" name="Original_Name">
+              </div>
+              
+              <div class="col-md-12">
+              <label for="image" class="form-label">Image Url</label>
+              <div class="input-group ">
+                <span class="input-group-text" id="image">https://example.com/users/</span>
+                <input type="text" class="form-control" id="image" name="image" aria-describedby="basic-addon3 basic-addon4">
+              </div>
+            </div>
+              <div class="col-6">
+                <label for="inputAddress2" class="form-label">Genres</label>
+                <input type="text" class="form-control" id="Genres" name="Genres" placeholder="">
+              </div>
+              <div class="col-6">
+                <label for="Producers" class="form-label">Producers</label>
+                <input type="text" class="form-control" id="Producers" name="Producers" placeholder="">
+              </div>
+              <div class="col-12">
+                <label for="Studios" class="form-label">Studios</label>
+                <input type="text" class="form-control" id="Studios" name="Studios" placeholder="">
+              </div>
+              <div class="col-12">
+                <label for="Type" class="form-label">Type</label>
+                <input type="text" class="form-control" id="Type" name="Type" placeholder="">
+              </div>
+              <div class="col-12">
+                <label for="Rating" class="form-label">Rating</label>
+                <input type="text" class="form-control" id="Rating" name="Rating" placeholder="">
+              </div>
+
+              <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="flex flex-wrap -m-2">
+      {% for i in dataset %}
+      <div class="xl:w-1/5 md:w-1/2">
+        <div class="bg-gray-200 text-black p-4 rounded-lg h-[26rem]">
+          <img class="h-[15rem] rounded w-full object-cover object-center mb-6" src="{{i.3}}" alt="content">
+          <h3 class="tracking-widest text-xs font-medium title-font"><span class="text-indigo-500">English</span> :
+            {{i.1}}</h3>
+          <a href="/delete/{{ i.0 }}" class="btn btn-danger btn-xs"
+            onclick="return confirm('Are You Sure For Delete?')">Delete</a>
+            
+            <!-- Button trigger modal -->
+            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              Edit
+            </button> -->
+            <a href="/update/{{i.0}}" class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{i.0}}">Edit</a>
+            
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop{{i.0}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header text-black">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Information:</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-black">
+                  
+                  <form class="row g-3" action="{{url_for('update')}}" method='POST'>
+                    <div class="col-md-6">
+                      <label for="Name" class="form-label">Name</label>
+                      <input type="hidden" id="id" name="id" value="{{i.0}}">
+                      <input type="text" class="form-control" id="Name" name="Name" value="{{i.1}}">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="Original_Name" class="form-label">Original name</label>
+                      <input type="text" class="form-control" id="Original_Name" name="Original_Name" value="{{i.2}}">
+                    </div>
+                    <div class="col-6">
+                      <label for="image" class="form-label">Image Url</label>
+                      <input type="text" class="form-control" id="image" name="image" value="{{i.3}}">
+                    </div>
+                    <div class="col-6">
+                      <label for="inputAddress2" class="form-label">Genres</label>
+                      <input type="text" class="form-control" id="Genres" name="Genres" value="{{i.4}}">
+                    </div>
+                    <div class="col-12">
+                      <label for="Producers" class="form-label">Producers</label>
+                      <input type="text" class="form-control" id="Producers" name="Producers" value="{{i.5}}">
+                    </div>
+                    <div class="col-12">
+                      <label for="Studios" class="form-label">Studios</label>
+                      <input type="text" class="form-control" id="Studios" name="Studios" value="{{i.6}}">
+                    </div>
+                    <div class="col-12">
+                      <label for="Type" class="form-label">Type</label>
+                      <input type="text" class="form-control" id="Type" name="Type" value="{{i.7}}">
+                    </div>
+                    <div class="col-12">
+                      <label for="Rating" class="form-label">Rating</label>
+                      <input type="text" class="form-control" id="Rating" name="Rating" value="{{i.8}}">
+                    </div>
+      
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </form>
+                  
+                  
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
